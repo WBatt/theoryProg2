@@ -7,33 +7,33 @@ using namespace std;
 
 int main(){
     
-    std::stack<char> PDA;
-    PDA.push('z');
+    std::stack<char> PDA;   //stack
+    PDA.push('z');          //bottom of stack
     
     string line;
     ifstream myfile ("sequence.txt");
     
     if (myfile.is_open()){
-        while (getline(myfile,line)){
-            for(int i = 0; i < line.length(); i++){
-                if(line[i] == 'i'){
-                    PDA.push('i');
+        while (getline(myfile,line)){                   //while there are more lines - get the next line
+            for(int i = 0; i < line.length(); i++){     //loop through each character in the line
+                if(line[i] == 'i'){                     
+                    PDA.push('i');                      //push when you find an 'i'
                 }
-                if(line[i] == 'e'){
-                    if(PDA.top() == 'z'){
+                if(line[i] == 'e'){                                 
+                    if(PDA.top() == 'z'){               //too many "else" statements = bad           
                         cout << "Sequence is syntactically incorrect" << endl;
                         return 0;
                     }
-                    PDA.pop();
-                    i += 3;
+                    PDA.pop();                          //pop when you find an 'e'
+                    i += 3;                             //add 3 to skip the second 'e' in "else"
                 }
             }
         }
         myfile.close();
         
-        if(PDA.top() ==  'z'){
+        if(PDA.top() ==  'z'){                          //if 'z' is left everything worked
             cout << "Correct sequence" << endl;
-        }else{
+        }else{                                          // else it didn't work
             cout << "Sequence is syntactically incorrect" << endl;
         }
     }
