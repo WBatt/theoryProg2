@@ -21,22 +21,33 @@ int main(){
                 }
                 if(line[i] == 'e'){                                 
                     if(PDA.top() == 'z'){               //too many "else" statements = bad           
-                        cout << "Sequence is syntactically incorrect" << endl;
-                        return 0;
+                        i = line.length() + 1;
+                        PDA.push('e');
                     }
-                    PDA.pop();                          //pop when you find an 'e'
+                    if(i != line.length() +1)
+                        PDA.pop();                          //pop when you find an 'e'
                     i += 3;                             //add 3 to skip the second 'e' in "else"
                 }
             }
-        }
-        myfile.close();
-        
-        if(PDA.top() ==  'z'){                          //if 'z' is left everything worked
-            cout << "Correct sequence" << endl;
-        }else{                                          // else it didn't work
-            cout << "Sequence is syntactically incorrect" << endl;
+            
+            if(PDA.top() ==  'z'){                          //if 'z' is left everything worked
+                cout << "Correct sequence" << endl;
+            }else{                                          //else it didn't work
+                cout << "Sequence is syntactically incorrect" << endl;
+                while(!PDA.empty()){
+                    PDA.pop();
+                }
+               PDA.push('z');
+            }
+            
+            
+            
+    
         }
     }
+    
+    myfile.close();
+        
     
     return 0;
 }
