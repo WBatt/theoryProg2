@@ -25,16 +25,20 @@ int main(){
                         PDA.push('e');
                     }
                     if(i != line.length() +1)
-                        PDA.pop();                          //pop when you find an 'e'
+                        PDA.pop();                      //pop when you find an 'e'
                     i += 3;                             //add 3 to skip the second 'e' in "else"
                 }
             }
             
-            if(PDA.top() ==  'z'){                          //if 'z' is left everything worked
+            if(PDA.top() ==  'z' || PDA.top() == 'i'){  //if 'z' is left everything worked
                 cout << "Correct sequence" << endl;
-            }else{                                          //else it didn't work
+                while(!PDA.empty()){                    //reset stack
+                    PDA.pop();
+                }
+               PDA.push('z');
+            }else{                                      //else it didn't work
                 cout << "Sequence is syntactically incorrect" << endl;
-                while(!PDA.empty()){
+                while(!PDA.empty()){                    //reset stack
                     PDA.pop();
                 }
                PDA.push('z');

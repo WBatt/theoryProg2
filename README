@@ -1,0 +1,12 @@
+To run:
+    Required files:
+        PDA.out
+        sequence.txt
+    Running the file:
+        ./PDA.out
+        
+To compile:
+    Required files:
+        PDAsimulator.cpp
+    Compiling the file:
+        g++ PDAsimulator.cpp
